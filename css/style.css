@@ -43,7 +43,6 @@ input#songRange{
     border: 0px solid;
     border-radius: 100%;
 }
-  
 .custom-range::-moz-range-thumb {
     width: 10px;
     height: 10px;
@@ -51,6 +50,14 @@ input#songRange{
     cursor: pointer;
     border: 0px solid;
     border-radius: 100%;
+}
+mark
+{
+    filter: opacity(0%);
+}
+.disabled
+{
+    color: #777 !important;
 }
 #currentsongimg
 {
@@ -101,54 +108,66 @@ i
     z-index:-1;
     margin-bottom: 80px;
 }
-.img-bg
+#img-bg
 {
     filter: grayscale(100)opacity(30%);
-    transition: 500ms;
+    transition: 300ms;
 }
-.img-bg:hover
+#img-bg:hover
 {
-    filter: none;
+    filter: grayscale(0)opacity(100%) !important;
 }
 .songlist
 {
     border-top-left-radius: 3rem;
     border-bottom-left-radius: 3rem;
-    background-color: white;
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
 }
 .img-info
 {
     border-top-left-radius: 2rem;
     border-bottom-left-radius: 2rem;
     transition: 500ms;
+    width: 100px;
+    height: 100px;
 }
-.songlist:hover::before
+.songlistPause:hover::before
 {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     font-size: 48px;
     content: '\f04b';
     position: absolute;
-    left:18vw;
     color: #fa2d48;
     z-index: 3;
     cursor: pointer;
+    text-align: center;
+    margin-left: 31px;
+
+}
+.link
+{
+    color: #fa2d48;
+}
+.link:hover
+{
+    color: #c7243a;
 }
 .songlistPlayed::before
 {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     font-size: 48px;
-    content: '\f04b';
+    content: '\f04c';
     position: absolute;
-    left:18vw;
     color: #fa2d48;
     z-index: 3;
+    cursor: pointer;
+    margin-left: 31px;
+    text-shadow: 0 0 20px black;
 }
-.songlist:hover .img-info
+.songlistPause:hover .img-info
 {
     filter: brightness(40%);
     content: '<i class="fa fa-play" aria-hidden="true"></i>';
@@ -161,16 +180,258 @@ button
 }
 .check
 {
-    width: 108px;
-    height: 108px;
-    background-color: #ccc;
+    width: 100px;
+    height: 100px;
+    background-color: #555;
 }
 .something
 {
-    width: 100%;
-    height: 20px;
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
+    position: absolute;
+    height: 30px;
     background-color: white;
     margin-bottom: 30px;
+}
+.animated
+{
+    animation-duration: 500ms;
+}
+.content
+{
+    height: 100px;
+    background-color: white;
+}
+.content:hover
+{
+    cursor: pointer;
+}
+.center
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container
+{
+    height: 100vh;
+}
+.block
+{
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+#space
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+.navbar-brand-custom
+{
+    padding: 10px;
+    position: absolute;
+    background-color: #fa2d48;
+    color:white;
+    left:0px;
+    top: 0px;
+}
+.navbar-nav
+{
+    margin-left:110px;
+}
+.itunes
+{
+    background-color:#fa2d48;
+    color: white;
+}
+.itunes:hover
+{
+    color: white;
+    background-color:#d80b26;
+}
+#upcon
+{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: fixed;
+    right: 15px;
+    bottom: 85px;
+}
+.up
+{
+    border-radius: 100%;
+    width: 75px;
+    height: 75px;
+    background-color:#fa2d48;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-control
+{
+    width: 200px;
+}
+.up .fas
+{
+    font-size: 36px;
+    padding: 0px;
+    margin: 0px;
+    color: white;
+}
+.spaceCon
+{
+    display: flex;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+#end
+{
+    margin-top: 100px;
+}
+.info-box-bg
+{
+    z-index: 11;
+    position:fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+.info-box
+{
+    border-radius: 20px;
+    z-index: 11;
+    /* width: 80vw;
+    height: 80vh; */
+    background-color: white;
+}
+.img-info-box
+{
+    border-top-left-radius: 20px;
+}
+.info-box-bg .container
+{
+    padding: 0;
+    margin: 0;
+}
+.exit
+{
+    position: absolute;
+    float: right;
+    z-index: 13;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    transition: background-color 300ms;
+}
+.exit:hover
+{
+    background-color: rgba(238, 238, 238, 0.301);
+    cursor: pointer;
+}
+.exit .fas
+{
+    font-size: 36px;
+    padding: 0px;
+    margin: 0px;
+    color: #fa2d48;
+}
+.h1
+{
+    margin-top: 30px;
+}
+.info-content
+{
+    padding: 50px;
+}
+.info-content p
+{
+    font-size: 24px;
+}
+.header h1
+{
+    font-size: 48px;
+}
+li .fas
+{
+    font-size: 20px;
+}
+.active-btn b
+{
+    font-weight: bold;
+    cursor: default;
+}
+.title
+{
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+}
+.info-content .copy
+{
+    font-size: 10px;
+    width:200px;
+}
+q
+{
+    font-weight: bold;
+}
+@media (max-width: 992px)
+{
+    #upcon
+    {
+        bottom: 15px;
+    }
+    .navbar-nav
+    {
+        margin-left:0px;
+        margin-top: 20px;
+    }
+    .player
+    {
+        display: none;
+    }
+    .songlistPause::before
+    {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 48px;
+        content: '\f04b';
+        position: absolute;
+        color: #fa2d48;
+        z-index: 3;
+        cursor: pointer;
+        text-align: center;
+        margin-left: 31px;
+        text-shadow: 0 0 20px black;
+    }
+    .img-info-box
+    {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    .header h1
+    {
+        margin-top: 600px;
+    }
+    .info-content p
+    {
+        font-size: 18px;
+    }
+    .info-content
+    {
+        padding: 10px;
+    }
+    .h1
+    {
+        font-size: 24px;
+        margin-top: 15px;
+    }
 }

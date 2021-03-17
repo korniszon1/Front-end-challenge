@@ -13,19 +13,62 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="background" class="container-fluid">
+
+    <div id="info">
 
     </div>
-    <div class="container">
+
+    <div id="background" class="container-fluid">
+        <div class="block" id="block"></div>
+    </div>
+
+    <div id="upcon" class="animated fadeInRight"><a id="btnLastSong" href="#up"><div class="up"><i class="fas fa-chevron-up"></i></div></a></div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white p-fixed" id="up">
+        <div class="container-fluid">
+            <a class="navbar-brand animated fadeInDown" href="#"></a>
+            <a class="navbar-brand-custom animated fadeInDown" href="#"> <h1 class="h2 text-white center">iTunes</h1> </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a id="nav-link1" class="nav-link" aria-current="page" href="#songlist49">Top 50</a>
+              </li>
+              <li class="nav-item">
+                <a id="nav-link2" class="nav-link" id="btnLastSong" href="#end">Ostatni album</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle d-none d-md-block" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Wyświetlanie
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li class="d-flex align-items-center"><a id="list" class="dropdown-item d-flex align-items-center active-btn" onclick="lishow(0)"><i class="fas fa-th-list"></i><b> Lista</b></a></li>
+                  <li class="d-flex align-items-center"><a id="blocklist" class="dropdown-item d-flex align-items-center" onclick="lishow(1)"><i class="fas fa-th"></i><b> Bloki</b> </a></li>
+                </ul>
+              </li>
+            </ul>
+            <input type="text" class="form-control animated fadeIn" id="myInput" onkeyup="searchtext()" placeholder="Szukaj po nazwie" title="Type in a name">
+          </div>
+        </div>
+      </nav>
+    
+    <div class="container" id="container">
+
         <audio id="currentsong" preload="metadata">
             
         </audio>
+
         <div id="space">
             <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
-        <div class="player fixed-bottom bg-white row">
+        <div id="end"></div>
+
+        <div class="player fixed-bottom bg-white row animated fadeInUp">
+
             <div class="col-3 col-lg-1 d-flex justify-content-center align-items-center" id="currentsongimg">
                 <div class="spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
