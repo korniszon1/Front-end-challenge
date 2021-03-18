@@ -23,14 +23,12 @@ async function getApi()
     img = list[currentsong]['im:image'][2].label;
     imgspace.innerHTML = '<img class="img" height="75px" src="'+img+'">';
     let listlength = (list.length)-1;
-    console.log(listlength);
 
     for(i=0;i<list.length;i++)
     {
         img = list[i]['im:image'][2].label;
         document.getElementById('background').innerHTML += '<img class="img-fluid col-3 col-lg-1 img-bg fastanimated fadeIn" id="img-bg" height="75px" src="'+img+'"  onclick="show('+i+')">';
     }
-    console.log(list);
     for(i=0;i<list.length;i++)
     {
             const id = list[i].id.attributes['im:id'];
@@ -42,13 +40,11 @@ async function getApi()
     const m_all = m_data.results;
     source[0] = m_all[0].previewUrl;
     let a = 0;
-    console.log(m_all);
     for(i=1;i<m_all.length;i = i+2)
     {
         source[a] = m_all[i].previewUrl;
         a++;
     }
-    console.log(source);    
     createAudio();
     timeupdate();
     // var sources = document.createElement('source');
@@ -93,139 +89,72 @@ async function getUSD()
     const usd_array = data.rates;
     usd = usd_array[0].mid
 }
-async function show(album)
-{
-    const api = await fetch(url);
-    const data = await api.json();
-    const all = data.feed;
-    list = all.entry;
-    let curalbum = list[album];
-    console.log(curalbum)
-    let releaseDate = curalbum['im:releaseDate'].attributes.label;
-    console.log(releaseDate);
-    let itemCount = curalbum['im:itemCount'].label;
-    let price = curalbum['im:price'].attributes.amount
-    let href;
-    let hrefcheck;
-    if(curalbum['im:artist'].attributes)
-    {
-        href = curalbum['im:artist'].attributes.href;
-    }else
-    {
-        href = curalbum.link.attributes.href;
-    }
 
-    
-    // releaseDate = releaseDate.replace('January','stycznia');
-    // releaseDate = releaseDate.replace('February','lutego');
-    // releaseDate = releaseDate.replace('March','marca');
-    // releaseDate = releaseDate.replace('April','kwietnia');
-    // releaseDate = releaseDate.replace('May','maja');
-    // releaseDate = releaseDate.replace('June','czerwca');
-    // releaseDate = releaseDate.replace('July','lipca');
-    // releaseDate = releaseDate.replace('August','sierpnia');
-    // releaseDate = releaseDate.replace('September','września');
-    // releaseDate = releaseDate.replace('October','października');
-    // releaseDate = releaseDate.replace('November','listopada');
-    // releaseDate = releaseDate.replace('December','grudnia');
-    if(releaseDate.search('January')!=-1)
-    {
-        let res = releaseDate.slice(7, 10);
-        res = res.replace(",",' '); 
-        const year = releaseDate.slice(11,releaseDate.length)
-        releaseDate = res+" stycznia "+year
-    }
-    if(releaseDate.search('February')!=-1)
-    {
-        let c = releaseDate.lastIndexOf('March');
-        let res = releaseDate.slice(8, 11);
-        res = res.replace(",",' '); 
-        const year = releaseDate.slice(12,releaseDate.length)
-        releaseDate = res+" lutego "+year
-    }
-    if(releaseDate.search('March')!=-1)
-    {
-        let c = releaseDate.lastIndexOf('March');
-        let res = releaseDate.slice(5, 8);
-        res = res.replace(",",' '); 
-        const year = releaseDate.slice(9,releaseDate.length)
-        releaseDate = res+" marca "+year
-    }
-    if(releaseDate.search('April')!=-1)
-    {
-        let c = releaseDate.lastIndexOf('March');
-        let res = releaseDate.slice(5, 8);
-        res = res.replace(",",' '); 
-        const year = releaseDate.slice(9,releaseDate.length)
-        releaseDate = res+" kwietnia "+year
-    }
-    if(releaseDate.search('May')!=-1)
-    {
-        let c = releaseDate.lastIndexOf('March');
-        let res = releaseDate.slice(3, 6);
-        res = res.replace(",",' '); 
-        const year = releaseDate.slice(7,releaseDate.length)
-        releaseDate = res+" maja "+year
-    }
-    if(releaseDate.search('June')!=-1)
-    {
-        let c = releaseDate.lastIndexOf('March');
-        let res = releaseDate.slice(4, 7);
-        res = res.replace(",",' '); 
-        const year = releaseDate.slice(8,releaseDate.length)
-        releaseDate = res+" czerwca "+year
-    }
-    if(releaseDate.search('July')!=-1)
-    {
-        let c = releaseDate.lastIndexOf('March');
-        let res = releaseDate.slice(4, 7);
-        res = res.replace(",",' '); 
-        const year = releaseDate.slice(8,releaseDate.length)
-        releaseDate = res+" lipca "+year
-    }
-    if(releaseDate.search('August')!=-1)
-    {
-        let c = releaseDate.lastIndexOf('March');
-        let res = releaseDate.slice(6, 9);
-        res = res.replace(",",' '); 
-        const year = releaseDate.slice(10,releaseDate.length)
-        releaseDate = res+" sierpnia "+year
-    }
-    if(releaseDate.search('September')!=-1)
-    {
-        let c = releaseDate.lastIndexOf('March');
-        let res = releaseDate.slice(9, 12);
-        res = res.replace(",",' '); 
-        const year = releaseDate.slice(13,releaseDate.length)
-        releaseDate = res+" września "+year
-    }
-    if(releaseDate.search('October')!=-1)
-    {
-        let c = releaseDate.lastIndexOf('March');
-        let res = releaseDate.slice(7, 10);
-        res = res.replace(",",' '); 
-        const year = releaseDate.slice(11,releaseDate.length)
-        releaseDate = res+" października "+year
-    }
-    if(releaseDate.search('November')!=-1)
-    {
-        let c = releaseDate.lastIndexOf('March');
-        let res = releaseDate.slice(8, 11);
-        res = res.replace(",",' '); 
-        const year = releaseDate.slice(12,releaseDate.length)
-        releaseDate = res+" listopada "+year
-    }
-    if(releaseDate.search('December')!=-1)
-    {
-        let c = releaseDate.lastIndexOf('March');
-        let res = releaseDate.slice(8, 11);
-        res = res.replace(",",' '); 
-        const year = releaseDate.slice(12,releaseDate.length)
-        releaseDate = res+" grudnia "+year
-    }
-    img = curalbum['im:image'][2].label;
-    document.getElementById('info').innerHTML += '<div class="info-box-bg animated fadeIn"><div class="info-box container mx-2 col-12"><div class="header col-12 d-flex justify-content-between"><img class="col-12 col-md-2 img-info-box" src="'+img+'"><h1 class="h1 d-none d-md-block text-center mx-auto col-12 col-md-6">'+curalbum['im:name'].label+'</h1><div class="exit d-flex justify-content-center align-items-center" onclick="exit()"><i class="fas fa-times"></i></div></div><div class="info-content d-flex flex-row flex-wrap justify-content-between"><h1 class="h1 d-block d-md-none col-12 text-center">'+curalbum['im:name'].label+'</h1><p class="col-12">Stworzone przez <a class="link" href="'+href+'" target="_blank"><u>'+curalbum['im:artist'].label+'</u></a> album pod tytułem <a href="'+curalbum.link.attributes.href+'" target="_blank"><i>"'+curalbum['im:name'].label+'"</i></a>. Album został wydany '+releaseDate+'. Aktualnie nr. '+(album+1)+' na iTunes. Album zawiera '+itemCount+' piosenek. Za album zapłacimy aktualnie '+(Math.round((price*usd) * 100) / 100)+' zł</p><a href="'+curalbum.link.attributes.href+'" target="_blank"><div class="btn itunes">Czytaj wiecej</div></a><p class="copy text-center col-4">'+curalbum.rights.label+'</p></div></div>'
+const fetchAlbum = async (url, albumId) => {
+    const api = await fetch(url);
+    const {feed: {entry}} = await api.json();
+
+    return entry[albumId];
 }
+
+const mapToCurrentAlbum = (album, usd) => {
+    const name = album['im:name'].label;
+    const artistName = album['im:artist'].label;
+    const songAmount = album['im:itemCount'].label;;
+    const link = album.link.attributes.href;
+    const rights = album.rights.label;
+    const releaseDate = album['im:releaseDate'].attributes.label;
+    const img = album['im:image'][2].label;
+
+    const rawPrice = album['im:price'].attributes.amount;
+    const price = (Math.round((rawPrice*usd) * 100) / 100);
+
+    const authorLink = album['im:artist'].attributes 
+        ? album['im:artist'].attributes.href
+        : album.link.attributes.href;
+
+    const formattedReleaseDate = new Date(releaseDate)
+        .toLocaleDateString("pl-PL", {  year: 'numeric', month: 'long', day: 'numeric' });        
+
+    return { name, artistName, price, link, authorLink, formattedReleaseDate, rights, img, songAmount };
+}
+
+function getHtmlPopUp(currentAlbum, albumId) {
+    const albumNumber = albumId + 1; 
+    return `
+    <div class="info-box-bg animated fadeIn">
+        <div class="info-box container mx-2 col-12">
+            <div class="header col-12 d-flex justify-content-between">
+                <img class="col-12 col-md-2 img-info-box" src="${currentAlbum.img}">
+                <h1 class="h1 d-none d-md-block text-center mx-auto col-12 col-md-6"> ${currentAlbum.name} </h1>
+                <div class="exit d-flex justify-content-center align-items-center" onclick="exit()">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="info-content d-flex flex-row flex-wrap justify-content-between">
+                <h1 class="h1 d-block d-md-none col-12 text-center">${currentAlbum.name}</h1>
+                <p class="col-12">Stworzone przez 
+                    <a class="link" href="${currentAlbum.authorLink}" target="_blank"><u> ${+currentAlbum.artistName}</u></a> album pod tytułem 
+                    <a href=" ${currentAlbum.link}" target="_blank"><i>"${currentAlbum.name}"</i></a>. Album został wydany 
+                    ${currentAlbum.formattedReleaseDate}. Aktualnie nr. ${albumNumber}' na iTunes. Album zawiera ${currentAlbum.songAmount}' piosenek. Za album zapłacimy aktualnie 
+                    ${currentAlbum.price} zł
+                </p>
+                <a href="${currentAlbum.link}" target="_blank">
+                    <div class="btn itunes">
+                        Czytaj wiecej
+                    </div>
+                </a>
+            <p class="copy text-center col-4">${currentAlbum.rights}</p>
+        </div>
+    </div>`
+}
+
+async function show(albumId)
+{
+    const popUpHtml = getHtmlPopUp(mapToCurrentAlbum(await fetchAlbum(url, albumId), usd), albumId); 
+    document.getElementById('info').innerHTML += popUpHtml;
+}
+
 function exit()
 {
     document.getElementById('info').innerHTML = '';
@@ -245,7 +174,6 @@ function lishow(c)
         document.getElementById('list').classList.add('active-btn');
         document.getElementById('blocklist').classList.remove('active-btn');
         document.getElementsByClassName('container')[0].style.display = 'block';
-        console.log('sieeeeeeeeeeeeeeeeeema')
         block.classList.add('block');
         for(i=0;i<list.length;i++)
         {
@@ -279,12 +207,10 @@ function changeSong(x)
     {
         isplay = false;
     }
-    console.log(currentsong)
     const songlist = document.getElementById('songlist'+currentsong);
     songlist.classList.remove('songlistPlayed');
     songlist.classList.add('songlistPause');
     currentsong = x;
-    console.log(x);
     img = list[currentsong]['im:image'][2].label;
     imgspace.innerHTML = '<img class="img" height="75px" src="'+img+'">';
     audio.pause();
