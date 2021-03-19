@@ -79,7 +79,7 @@ async function getApi()
         }
         
      }
-     getUSD();
+     
 }
 async function getUSD()
 {
@@ -89,7 +89,7 @@ async function getUSD()
     const usd_array = data.rates;
     usd = usd_array[0].mid
 }
-
+getUSD();
 const fetchAlbum = async (url, albumId) => {
     const api = await fetch(url);
     const {feed: {entry}} = await api.json();
@@ -134,7 +134,7 @@ function getHtmlPopUp(currentAlbum, albumId) {
             <div class="info-content d-flex flex-row flex-wrap justify-content-between">
                 <h1 class="h1 d-block d-md-none col-12 text-center">${currentAlbum.name}</h1>
                 <p class="col-12">Stworzone przez 
-                    <a class="link" href="${currentAlbum.authorLink}" target="_blank"><u> ${+currentAlbum.artistName}</u></a> album pod tytułem 
+                    <a class="link" href="${currentAlbum.authorLink}" target="_blank"><u> ${currentAlbum.artistName}</u></a> album pod tytułem 
                     <a href=" ${currentAlbum.link}" target="_blank"><i>"${currentAlbum.name}"</i></a>. Album został wydany 
                     ${currentAlbum.formattedReleaseDate}. Aktualnie nr. ${albumNumber}' na iTunes. Album zawiera ${currentAlbum.songAmount}' piosenek. Za album zapłacimy aktualnie 
                     ${currentAlbum.price} zł
