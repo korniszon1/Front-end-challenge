@@ -79,7 +79,7 @@ async function getApi()
         }
         
      }
-     
+     getUSD();
 }
 async function getUSD()
 {
@@ -89,7 +89,7 @@ async function getUSD()
     const usd_array = data.rates;
     usd = usd_array[0].mid
 }
-getUSD();
+
 const fetchAlbum = async (url, albumId) => {
     const api = await fetch(url);
     const {feed: {entry}} = await api.json();
